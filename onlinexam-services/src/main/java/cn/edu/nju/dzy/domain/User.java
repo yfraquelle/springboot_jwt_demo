@@ -81,7 +81,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @JsonIgnore
     @ManyToMany
     @JoinTable(
-        name = "jhi_user_authority",
+        name = "user_authority",
         joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id"/*User表中的id字段*/)},
         inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "name"/*Authority表中的name字段*/)})
     private Set<Authority> authorities = new HashSet<>();//set为非重集合
