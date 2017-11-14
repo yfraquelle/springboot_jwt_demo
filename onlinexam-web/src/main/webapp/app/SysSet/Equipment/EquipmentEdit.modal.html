@@ -1,0 +1,70 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="$ctrl.ok()"></button>
+    <h4 class="modal-title">编辑装置</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN FORM-->
+            <form action="javascript:;" class="horizontal-form" id="edit_form">
+                <div class="form-body">
+                    <div class="alert alert-danger display-hide">
+                        <button class="close" data-close="alert"></button>
+                        <label id="lbl_Msg"></label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">公司</label>
+                                 <input type="text" class="form-control" ng-model='$ctrl.equipment.companyName' placeholder="请输入文本">
+                                <input id="hide_Id" type="hidden" />
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">厂</label>
+                                 <input type="text" class="form-control" ng-model='$ctrl.equipment.factoryName' placeholder="请输入文本">
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">车间</label>
+                                 <input type="text" class="form-control" ng-model='$ctrl.equipment.workshopName' placeholder="请输入文本">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">装置</label>
+                                <input type="text" class="form-control" ng-model='$ctrl.equipment.deviceName' placeholder="请输入文本">
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    <div class="row">
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">系统</label>
+                                 <input type="text" class="form-control" ng-model='$ctrl.equipment.systemName' placeholder="请输入文本">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-5 col-md-7">
+                            <button type="submit" id="btn_Save" class="btn green" ng-click="$ctrl.saveEquipment()">提交</button>
+                            <button type="reset" id="btn_Clear" class="btn btn-default">清空</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+</div>

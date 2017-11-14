@@ -1,0 +1,193 @@
+<!-- BEGIN PAGE CONTENT -->
+<div class="page-content">
+    <div class="container">
+        <!-- BEGIN PAGE BREADCRUMB -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="#">主页</a><i class="fa fa-circle"></i>
+            </li>
+            <li class="active">系统设置<i class="fa fa-circle"></i>
+            </li>
+            <li class="active">采样点管理
+            </li>
+        </ul>
+        <div class="row margin-top-15">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs font-green-sharp"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">采样点管理</span>
+                        </div>
+                        <div class="tools">
+                            <a href="javascript:;" class="reload" id="reload"></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a class="btn green" data-toggle="modal" id="btn_Add" href="#responsive">新增采样点</a>
+                                    <a class="btn purple" data-toggle="modal" id="btn_Delete" href="#responsive">批量删除</a>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover" id="sample_1">
+                            <thead>
+                                <tr>
+                                    <th class="table-checkbox">
+                                        <input type="checkbox" id="chk_all" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                                    </th>
+                                    <th>采样点名称和编号</th>
+                                    <th>隶属设备</th>
+                                    <th>隶属系统</th>
+                                    <th>隶属装置</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="search_result">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkboxes" value="" name="" />
+                                    </td>
+                                    <td>重油制烯烃产品精制-液化气原料SC-1005-液化气原料(CH-1-23)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="#">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkboxes" value="" name="" />
+                                    </td>
+                                    <td>重油制烯烃产品精制-液化气原料SC-1005-液化气原料(CH-1-23)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="#">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkboxes" value="" name="" />
+                                    </td>
+                                    <td>重油制烯烃产品精制-液化气原料SC-1005-液化气原料(CH-1-23)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="#">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkboxes" value="" name="" />
+                                    </td>
+                                    <td>重油制烯烃产品精制-液化气原料SC-1005-液化气原料(CH-1-23)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="#">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkboxes" value="" name="" />
+                                    </td>
+                                    <td>重油制烯烃产品精制-液化气原料SC-1005-液化气原料(CH-1-23)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="#">编辑</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row margin-top-0">
+                            <div class="col-md-12" style="text-align: right;">
+                                <ul class="pagination" id="pager_container">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">编辑采样点</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN FORM-->
+                        <form action="javascript:;" class="horizontal-form" id="user_form">
+                            <div class="form-body">
+                                <div class="alert alert-danger display-hide">
+                                    <button class="close" data-close="alert"></button>
+                                    <label id="lbl_Msg"></label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">采样点名称和编号</label>
+                                            <input type="text" id="txtUMID" name="UMID" class="form-control" placeholder="采样点名称和编号">
+                                            <input id="hide_Id" type="hidden" />
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">隶属设备</label>
+                                            <select class="form-control" id="slt_Sex" name="Sex">
+                                                <option value="0"></option>
+                                                <option value="1">隶属设备1</option>
+                                                <option value="2">隶属设备2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">隶属系统</label>
+                                            <select class="form-control" id="slt_Sex2" name="Sex">
+                                                <option value="0"></option>
+                                                <option value="1">隶属系统1</option>
+                                                <option value="2">隶属系统2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">隶属装置</label>
+                                            <select class="form-control" id="slt_Sex1" name="Sex">
+                                                <option value="0"></option>
+                                                <option value="1">隶属装置1</option>
+                                                <option value="2">隶属装置2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" id="btn_Save" class="btn green">提交</button>
+                                        <button type="reset" id="btn_Clear" class="btn btn-default">清空</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

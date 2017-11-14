@@ -1,0 +1,169 @@
+
+    <style type="text/css">
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span {
+        font-family: 'Microsoft YaHei', "Open Sans", sans-serif;
+    }
+    
+    .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li > a {
+        font-family: 'Microsoft YaHei', "Open Sans", sans-serif;
+    }
+    
+    .page-header .page-header-top .page-logo .logo-default {
+        margin: 5px 0 0 0;
+    }
+    
+    .page-header .page-header-menu {
+        background: #48525e;
+    }
+    
+    .page-header .page-header-menu .hor-menu .navbar-nav > li.open > a,
+    .page-header .page-header-menu .hor-menu .navbar-nav > li > a:hover {
+        background: #3b434c !important;
+    }
+    
+    .page-footer {
+        background: #48525e;
+    }
+    
+    .page-header .page-header-menu .hor-menu .navbar-nav > li .dropdown-menu li:hover > a {
+        background: #3b434c;
+    }
+    
+    .breadcrumb {
+        padding: 0;
+    }
+    
+    .content {
+        /*position: fixed;*/
+        width: 100%;
+        /*top: 126px;*/
+        /*bottom: 0;*/
+    } 
+    </style>
+
+    <div class="page-header">
+        <!-- BEGIN HEADER TOP -->
+        <div class="page-header-top">
+            <div class="container">
+                <!-- BEGIN LOGO -->
+                <div class="page-logo">
+                    <a href="javascript:;">
+                        <img src="content/images/logo-default.jpg" alt="logo" class="logo-default">
+                    </a>
+                </div>
+                <!-- END LOGO -->
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <a href="javascript:;" class="menu-toggler"></a>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <li class="dropdown dropdown-user dropdown-dark">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <span class="username username-hide-mobile">{{vm.username}}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="javascript:;">
+                                        <i class="icon-user"></i>个人中心</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <i class="icon-user"></i>修改密码</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" ng-click="vm.logout()">
+                                        <i class="icon-key"></i>退出 </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+        </div>
+        <!-- END HEADER TOP -->
+        <!-- BEGIN HEADER MENU -->
+        <div class="page-header-menu">
+            <div class="container">
+                <!-- BEGIN MEGA MENU -->
+                <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
+                <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
+                <div class="hor-menu ">
+                    <ul class="nav navbar-nav">
+                        <li id="Detection">
+                            <a ui-sref=".currentAlarm">
+                                <i class="glyphicon glyphicon-retweet"></i> 当前报警
+                            </a>
+                        </li>
+                        <li id="ShareMonitorV2">
+                            <a ui-sref=".historyInquiry">
+                                <i class="glyphicon glyphicon-credit-card"></i> 历史查询
+                            </a>
+                        </li>
+                        <li id="OpiMonitor">
+                            <a ui-sref=".deviceData">
+                                <i class="glyphicon glyphicon-screenshot"></i>装置数据</a>
+                        </li>
+                        <li class="menu-dropdown classic-menu-dropdown" has-any-authority="ROLE_ADMIN,ROLE_SYSADMIN">
+                            <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
+                                <i class="glyphicon glyphicon-cog"></i>系统设置 <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-left">
+                                <li id="User">
+                                    <a ui-sref=".user">
+                                        <i class="glyphicon glyphicon-link"></i> 用户管理 </a>
+                                </li>
+                                <li>
+                                    <a ui-sref=".Equipment">
+                                        <i class="icon-globe"></i> 装置管理 </a>
+                                </li>
+                                <li>
+                                    <a ui-sref=".setDeviceData">
+                                        <i class="icon-globe"></i> 装置设置 </a>
+                                </li>
+                                <li>
+                                    <a ui-sref=".Device">
+                                        <i class="glyphicon glyphicon-pencil"></i> 设备管理 </a>
+                                </li>
+                                <li>
+                                    <a ui-sref=".Parameter">
+                                        <i class="glyphicon glyphicon-move"></i> 参数管理 </a>
+                                </li>
+                                <li>
+                                    <a ui-sref=".SamplingPoint">
+                                        <i class="glyphicon glyphicon-file"></i> 采样点管理 </a>
+                                </li>
+                                <li>
+                                    <a ui-sref='.DataOption'>
+                                        <i class="glyphicon glyphicon-file"></i> 数据选项 </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MEGA MENU -->
+            </div>
+        </div>
+        <!-- END HEADER MENU -->
+    </div>
+    <!-- <div class="content"> -->
+    <div class="page-container">
+          <!--  <ui-view name="mainContent"></ui-view> -->
+            <div ui-view></div>
+    </div>
+
+    <div class="page-footer">
+        <div class="container" style="text-align: center;">
+            {{vm.now|date:'yyyy'}} &copy;<a href="http://www.miitbeian.gov.cn" title="苏ICP备15056656号-3">南京科思倍信息科技有限公司 版权所有 ICP证：苏ICP备15056656号-3</a>
+        </div>
+    </div>

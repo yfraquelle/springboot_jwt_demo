@@ -1,0 +1,107 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+
+spring:
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use gulp + BrowserSync for livereload
+    datasource:
+        url: jdbc:mysql://localhost:3306/onlinexam
+        username: root
+        password: 141250175
+
+    jpa:
+        database: MYSQL
+        show_sql: true
+        properties:
+            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_query_cache: true
+            hibernate.generate_statistics: true
+            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+    mail:
+        host: localhost
+        port: 25
+        username:
+        password:
+    data:
+      redis:
+        repositories:
+          enable: false 
+    messages:
+        cache-seconds: 1
+    thymeleaf:
+        cache: false
+ 
+liquibase:
+    contexts: dev
+    enabled: false
+
+server:
+    port: 8080
+    contextPath: /onlinexam
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+        min-response-size: 1024
+# ===================================================================
+# JHipster specific properties
+# ===================================================================
+
+jhipster:
+    cache: # Hibernate 2nd level cache, used by CacheConfiguration
+        timeToLiveSeconds: 3600
+        ehcache:
+            maxBytesLocalHeap: 64M
+    security:
+        authentication:
+            jwt:
+                secret: 005ac3d771893fcad13fd80ffc8bd172a938b1c0
+                # Token is valid 24 hours
+                tokenValidityInSeconds: 86400
+    mail: # specific JHipster mail property, for standard properties see MailProperties
+        from: 756098346@qq.com
+    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
+        jmx.enabled: true
+        spark:
+            enabled: false
+            host: localhost
+            port: 9999
+        graphite:
+            enabled: false
+            host: localhost
+            port: 2003
+            prefix: dzy
+        logs: # Reports Dropwizard metrics in the logs
+            enabled: false
+            reportFrequency: 60 # in seconds
+    logging:
+        logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
+            enabled: false
+            host: localhost
+            port: 5000
+            queueSize: 512
+    swagger: # swagger is enabled. It can be disabled by pasing 'no-swagger' profile at run time as well
+        enabled: true
+    opentsdb:
+        host: localhost
+        port: 4242
+        response: 0
+        #0:summary #1:detail   
+    utcloud:
+        wxEnv: 2
+        lang: zh_CN
+        debug: true
+        url: http://localhost:8080/onlinexam
+        redis: false

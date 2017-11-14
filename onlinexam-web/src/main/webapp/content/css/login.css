@@ -1,0 +1,35 @@
+    body {
+        background-color: none;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Microsoft YaHei';
+        outline: none;
+    }
+    
+    .separator {
+        float: left;
+        display: inline-block;
+        width: 1px;
+        height: 14px;
+        margin-top: 3px;
+        margin-right: 5px;
+        margin-left: 5px;
+        border-left: 1px solid #4d4d4d;
+    }
+    
+    .nav > li > a {
+        padding: 0px 3px;
+        color: #666;
+    }
+    
+    .sep {
+        border-bottom: 1px solid #e3e3e3;
+        padding: 10px 0px;
+    }
+    
+    .error {
+        color: #a94442;
+    }

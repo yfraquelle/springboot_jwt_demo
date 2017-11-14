@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link href="../../../bower_components/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
+       <link href="../../../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../../bower_components/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
+    <link href="../../../bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="../../../bower_components/jqvmap/dist/jqvmap.css" rel="stylesheet" />
+       <link href="../../../bower_components/morris.js/morris.css" rel="stylesheet" />
+
+    <link href="../../../content/plugins/uniform/css/uniform.default.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../../../content/css/task.css">
+    <link rel="stylesheet" type="text/css" href="../../../content/css/components-rounded.css">
+    <link rel="stylesheet" type="text/css" href="../../../content/css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="../../../content/css/default.css">
+    <link rel="stylesheet" type="text/css" href="../../../content/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="../../../content/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../../../content/css/default.css">
+    <script src="../../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+<body>
+
+
+    <style type="text/css">
+        .chart {
+            height: 320px;
+        }
+
+    </style>
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container">
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <a href="#">主页</a><i class="fa fa-circle"></i>
+                </li>
+                <li class="active">当前警报
+                </li>
+            </ul>
+            <!-- END PAGE BREADCRUMB -->
+            <div class="row margin-top-15">
+                <div class="col-md-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart theme-font"></i>
+                                <span class="caption-subject theme-font bold uppercase">当前警报实时查询</span>
+                                <span class="caption-helper hide"></span>
+                            </div>
+                            <div  class="actions">
+                                <div class="btn-group">
+                                    <select class="form-control input-small" id="slt_device" onchange="SearchQuery();">
+                                         <option value="0">全部装置</option>
+                                        <option value="1">演示装置</option>
+                                    </select>
+                                </div>
+                                <div class="btn-group">
+                                    <input type="checkbox" class="make-switch" checked data-on-text="默认" data-off-text="我的">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <table class="table table-striped table-bordered table-advance table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>装置</th>
+                                        <th>事件名称</th>
+                                        <th>位号</th>
+                                        <th style="width: 15%;">开始时间</th>
+                                        <th style="width: 15%;">持续时间(分)</th>
+                                        <%--<th style="width: 10%;">报警值</th>--%>
+                                        <th style="width: 10%;">报警范围</th>
+                                        <th style="width: 8%;">趋势图</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="search_result">
+                                </tbody>
+                            </table>
+                            <div class="row margin-top-0">
+                                <div class="col-md-12" style="text-align: right;">
+                                    <nav>
+                                        <ul class="pagination" id="pager_container">
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PAGE CONTENT -->
+    <!-- /.modal -->
+    <div class="modal fade bs-modal-lg" id="MainTrend" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                   <div class="row">
+                        <div class="col-md-5">
+                            <h4 class="modal-title">监测曲线</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control input-small" onchange="ChangeChart()" id="slt_Chart">
+                                <option value="2">2小时</option>
+                                <option value="4">4小时</option>
+                                <option value="8">8小时</option>
+                                <option value="24">24小时</option>
+                                <option value="48">48小时</option>
+                                <option value="72">72小时</option>
+                            </select>                            
+                        </div>
+                       <div class="col-md-2">
+                           <span id="lbl_msg"></span>
+                       </div>
+                       <div class="col-md-2">
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                       </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <h5 id="chartTitle" style="text-align: center; font-weight: bold;"></h5>
+                    <div class="row">
+                        <div class="col-md-12" id="div_chart">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">                    
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <script type="text/javascript" src="../Content/Scripts/Common.js"></script>
+    <script src="../Content/Scripts/xdate.js"></script>
+    <script src="../Content/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="../Content/Scripts/ComJs.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            
+            var obj = {};
+            obj.oid = $("#slt_device");
+            obj.otext = "";
+            obj.oaction = "../Ajax/DeviceAjax.ashx?action=GetEquipList";
+            obj.ofunction = function () {
+                SearchQuery();
+            };
+            LoadSltList(obj);
+            SearchQuery();
+        });
+
+        var _pSize = 10;
+        function SetPagerNo(cPage) {
+            SearchQuery(cPage, _pSize);
+        }
+        function SearchQuery(cPage, pSize) {
+            if (!arguments[0]) cPage = _cPage;//当前页索引
+            if (!arguments[1]) pSize = _pSize;//页显示记录数
+
+            var pValue = {
+                pSize: pSize,
+                cPage: cPage,
+                deviceId:$("#slt_device").val()
+            };
+            jQuery.ajax({
+                type: 'post',
+                url: "../Ajax/AlarmsAjax.ashx?action=GetAlarmsPage",
+                data: pValue,
+                cache: false,
+                dataType: "json",
+                beforeSend: function () {
+                    $("#search_result").html("<tr><td colspan='20' height='200' align='center'><img src='../Content/Images/loadgif.gif' /></td></tr>");
+                },
+                success: function (result) {
+                    if (result.status == null || result.status == "undefined") {
+                        BindQueryList(result.content);
+                        SetPager(cPage, result.totalElements, "#pager_container", pSize);
+                    } else if (result.status == 133) {
+                        window.location.href = "../Login.aspx";
+                    } else {
+                        SetPager(cPage, 0, "#pager_container", pSize);
+                        $("#search_result").html("<tr><td colspan=\"20\" style=\"text-align:center;\">" + result.result_data + "</td></tr>");
+                    }
+                }
+            });
+        }
+        function BindQueryList(result_data) {
+            var oHtml = "";
+            for (var i = 0; i < result_data.length; i++) {
+                var data = result_data[i];
+                var alarm = data.alarm;
+
+                var pissName = "";
+                var limitHigh = 0;
+                var limitLow = 0;
+                var categoryName = "";
+                var param_type = "";
+                if (data.piss != null) {
+                    pissName = data.piss[0].name;
+                    limitHigh = data.piss[0].limitHigh;
+                    limitLow = data.piss[0].limitLow;
+                    param_type = data.piss[0].paramType;
+                    categoryName = data.piss[0].categoryName;
+                }
+                //alarmValue
+                oHtml += "<tr>";
+                oHtml += "<td>" + categoryName + "</td>";
+                oHtml += "<td>" + alarm.describe + "</td>";
+                oHtml += "<td>" + alarm.name + "</td>";
+                //oHtml += "<td>" + param_type + "</td>";
+                var raiset = new XDate(data.raiseTime);
+                var raiset1 = new Date(data.raiseTime);
+                oHtml += "<td>" + raiset1.format() + "</td>";
+                var continued = raiset.diffMinutes(new XDate());
+                oHtml += "<td>" + continued.toFixed(0) + "</td>";
+                //oHtml += "<td>" + data.alarmValue.toFixed(4) + "</td>";
+                oHtml += "<td>" + limitLow + "~" + limitHigh + "</td>";
+
+                oHtml += "<td><a onclick=\"ShowChart('" + pissName + "','" + limitHigh + "','" + limitLow + "','" + alarm.describe + "');\"><i class=\"icon-bar-chart font-green-sharp\"></i><a></td>";
+                oHtml += "</tr>";
+            }
+            jQuery("#search_result").html(oHtml);
+        }
+
+        Date.prototype.format = function (format) {
+            if (isNaN(this.getMonth())) {
+                return '';
+            }
+            if (!format) {
+                format = "yyyy-MM-dd hh:mm:ss";
+            }
+            var o = {
+                /* month */
+                "M+": this.getMonth() + 1,
+                /* day */
+                "d+": this.getDate(),
+                /* hour */
+                "h+": this.getHours(),
+                /* minute */
+                "m+": this.getMinutes(),
+                /* second */
+                "s+": this.getSeconds(),
+                /* quarter */
+                "q+": Math.floor((this.getMonth() + 3) / 3),
+                /* millisecond */
+                "S": this.getMilliseconds()
+            };
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        };
+        //function BindQueryList(result_data) {
+        //    var oHtml = "";
+        //    for (var i = 0; i < result_data.length; i++) {
+        //        var data = result_data[i];
+        //        var alarms_data = data.alarms;
+        //        for (var i = 0; i < alarms_data.length; i++) {
+        //            var alarm = alarms_data[i];
+
+        //            var pissName = "";
+        //            var limitHigh = 0;
+        //            var limitLow = 0;
+        //            var categoryName = "";
+        //            if (alarm.piss != null) {
+        //                pissName = alarm.piss[0].name;
+        //                limitHigh = alarm.piss[0].limitHigh;
+        //                limitLow = alarm.piss[0].limitLow;
+        //                categoryName = alarm.piss[0].categoryName;
+        //            }
+        //            //alarmValue
+        //            oHtml += "<tr>";
+        //            oHtml += "<td>" + categoryName + "</td>";
+        //            oHtml += "<td>" + alarm.alarm.name + alarm.alarm.describe + "</td>";
+        //            var raiset = new XDate(alarm.raiseTime);
+        //            oHtml += "<td>" + raiset.toString("yyyy-MM-dd hh:mm:ss") + "</td>";
+        //            var continued = raiset.diffMinutes(new XDate());
+        //            oHtml += "<td>" + continued.toFixed(0) + "</td>";
+        //            oHtml += "<td></td>";
+        //            oHtml += "<td>" + limitLow + "~" + limitHigh + "</td>";
+
+        //            oHtml += "<td><a onclick=\"ShowChart('" + pissName + "','" + limitHigh + "','" + limitLow + "','" + alarm.alarm.describe + "');\"><i class=\"icon-bar-chart font-green-sharp\"></i><a></td>";
+        //            oHtml += "</tr>";
+        //        }
+        //    }
+        //    jQuery("#search_result").html(oHtml);
+        //}
+    </script>
+    <input id="pissName" type="text" style="display: none;" />
+    <input id="limitHigh" type="text" style="display: none;" />
+    <input id="limitLow" type="text" style="display: none;" />
+    <input id="alarmName" type="text" style="display: none;" />
+    <link type="text/css" href="../Content/lib/c3/css/c3.css" rel="stylesheet" />
+    <script type="text/javascript" src="../Content/lib/d3/d3.v3.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../Content/lib/c3/js/c3.min.js"></script>
+    <script type="text/javascript">
+        function ChangeChart() {
+            var pissName = $("#pissName").val();
+            var limitHigh = $("#limitHigh").val();
+            var limitLow = $("#limitLow").val();
+            var alarmName = $("#alarmName").val();
+            ShowChart(pissName, limitHigh, limitLow, alarmName);
+        }
+
+        //var chart = c3.generate({
+        //    bindto: '#div_chart',
+        //    size: {
+        //        height: 450,
+        //        bottom: 20//,
+        //    },
+        //    padding: {
+        //        right: 80
+        //    },
+        //    grid: {
+        //        y: {
+        //            show: true
+        //        }
+        //    },
+        //    data: {
+        //        x: 'x',
+        //        xFormat: '%Y-%m-%d %H:%M:%S',
+        //        columns: [
+        //        ]
+        //    },
+        //    legend: {
+        //        position: 'inset',
+        //        inset: {
+        //            anchor: 'top-left',
+        //            x:230,
+        //            y:0,
+        //            step: 1
+        //        }
+        //    },
+        //    axis: {
+        //        x: {
+        //            type: 'timeseries',
+        //            localtime: false,
+        //            tick: {
+        //                fit: true,
+        //                count: 10,
+        //                format: '%Y-%m-%d %H:%M:%S'
+        //            },
+        //            height: 50,
+        //            padding: {
+        //                bottom: 50,
+        //                right: 50,
+        //            }
+        //        },
+        //        y: {
+        //            tick: {
+        //                format: function (d) { return d.toFixed(4); }
+        //            }
+        //        }
+        //    }
+
+        //});
+
+        function ShowChart(pissName, limitHigh, limitLow, alarmName) {
+            $('#MainTrend').modal('show');
+            $("#pissName").val(pissName);
+            $("#limitHigh").val(limitHigh);
+            $("#limitLow").val(limitLow);
+            $("#alarmName").val(alarmName);
+            var pValue = {
+                Period: $("#slt_Chart").val(),
+                PiName: pissName
+            };
+            jQuery.ajax({
+                type: 'post',
+                url: "../Ajax/AlarmsAjax.ashx?action=GetAlarmsChart",
+                data: pValue,
+                cache: false,
+                dataType: "json",
+                beforeSend: function () {
+                    $("#div_chart").html("<p><img src='../Content/Images/loadgif.gif' /></p>");
+                    $("#chartTitle").text("");
+                },
+                success: function (result) {
+                    if ((result.status == null || result.status == "undefined") && result.length > 0) {
+                        $("#chartTitle").text(pissName + " " + alarmName + " (" + pValue.Period + "小时)");
+                        //$("#div_chart").html("");
+                        var jsonObj = result;
+                        var dps = jsonObj[0].dps;
+                        var data = null;
+                        var data = [pissName];
+                        var data1 = ["上限值"];
+                        var data2 = ["下限值"];
+                        var data_dt = ["x"];
+                        for (var key in dps) {
+                            data.push(dps[key].toFixed(4));
+                            data1.push(limitHigh);
+                            data2.push(limitLow);
+                            //var dt = unixToDatetime(key);
+                            //alert(dt);
+                            var dt = new Date(key * 1000);
+                            data_dt.push(dt);
+                        }
+                        var chart = c3.generate({
+                            bindto: '#div_chart',
+                            size: {
+                                height: 450,
+                                bottom: 20//,
+                            },
+                            padding: {
+                                right: 80
+                            },
+                            grid: {
+                                y: {
+                                    show: true
+                                }
+                            },
+                            point: {
+                                r: 0,
+                                focus: {
+                                    expand: {
+                                        r: 3
+                                    }
+                                }
+                            },
+                            data: {
+                                x: 'x',
+                                xFormat: '%Y-%m-%d %H:%M:%S',
+                                columns: [
+                                ]
+                            },
+                            legend: {
+                                position: 'inset',
+                                inset: {
+                                    anchor: 'top-left',
+                                    x: 230,
+                                    y: 0,
+                                    step: 1
+                                }
+                            },
+                            axis: {
+                                x: {
+                                    type: 'timeseries',
+                                    //localtime: false,
+                                    tick: {
+                                        fit: true,
+                                        count: 10,
+                                        format: '%Y-%m-%d %H:%M:%S'
+                                    },
+                                    height: 50,
+                                    padding: {
+                                        bottom: 50,
+                                        right: 50,
+                                    }
+                                },
+                                y: {
+                                    tick: {
+                                        format: function (d) { return d.toFixed(4); }
+                                    }
+                                }
+                            }
+
+                        });
+
+                        //pissName = "'" + pissName+"'";
+
+                        setTimeout(function () {
+                            chart.load({
+                                x: 'x',
+                                columns: [
+                                    data_dt,
+                                    data1,
+                                    data,
+                                    data2
+                                ],
+                                colors: {
+                                    "上限值": '#EF4836',
+                                    pissName: '#0088cc',
+                                    "下限值": '#EF4836'
+                                }
+                            });
+                        }, 1000);
+                    } else {
+                        $("#div_chart").html("<p>缺少数据</p>");
+                    }
+                }
+            });
+        }
+
+        //将Unix时间戳转化为日期,参数为13位时间戳
+        function unixToDatetime(d) {
+
+            var now = new Date(parseInt(d * 1000));
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var date = now.getDate();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            return year + "-" + add0(month) + "-" + add0(date) + " " + add0(hour) + ":" + add0(minute) + ":" + add0(second);
+        }
+        function add0(m) {
+            return m < 10 ? '0' + m : m
+        }
+    </script>
+    </body>
+</html>

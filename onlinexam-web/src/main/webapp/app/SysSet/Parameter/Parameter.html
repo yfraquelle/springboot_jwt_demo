@@ -1,0 +1,377 @@
+<div class="page-content">
+    <div class="container">
+        <!-- BEGIN PAGE BREADCRUMB -->
+        <ul class="page-breadcrumb breadcrumb">
+            <li>
+                <a href="#">主页</a><i class="fa fa-circle"></i>
+            </li>
+            <li class="active">系统设置<i class="fa fa-circle"></i>
+            </li>
+            <li class="active">参数管理
+            </li>
+        </ul>
+        <div class="row margin-top-15">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs font-green-sharp"></i>
+                            <span class="caption-subject font-green-sharp bold uppercase">参数管理</span>
+                        </div>
+                        <div class="tools">
+                            <a href="javascript:;" class="reload" id="reload"></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-toolbar">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a class="btn green" data-toggle="modal" id="btn_Add" href="#responsive">新增参数</a>
+                                    <a class="btn purple" data-toggle="modal" id="btn_Delete" href="#responsive">批量删除</a>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover" id="sample_1">
+                            <thead>
+                                <tr>
+                                    <th class="table-checkbox">
+                                        <input type="checkbox" id="chk_all" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                                    </th>
+                                    <th>位号名称</th>
+                                    <th>位号描述</th>
+                                    <th>测量位置/对象</th>
+                                    <th>隶属设备</th>
+                                    <th>隶属系统</th>
+                                    <th>隶属装置</th>
+                                        <th>管理标识</th>
+                                        <th>工程单位</th>
+                                        <th>卡片指标上限</th>
+                                        <th>卡片指标下限</th>
+                                        <th>报警高高限</th>
+                                        <th>报警高限</th>
+                                        <th>报警低限</th>
+                                        <th>报警低低限</th>
+                                        <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="search_result">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkboxes" value="" name="" />
+                                    </td>
+                                    <td><a>16PBR71001.PV</a></td>
+                                    <td>0.7MPa/min紧急泄压复位</td>
+                                    <td>0.7MPa/min紧急泄压复位</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>轻油加氢</td>
+                                    
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td></td>
+                                        <td><a href="#">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkboxes" value="" name="" />
+                                    </td>
+                                    <td><a>16PBR71001.PV</a></td>
+                                    <td>0.7MPa/min紧急泄压复位</td>
+                                    <td>0.7MPa/min紧急泄压复位</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>轻油加氢</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td></td>
+                                        <td><a href="#">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkboxes" value="" name="" />
+                                    </td>
+                                    <td><a>16PBR71001.PV</a></td>
+                                    <td>0.7MPa/min紧急泄压复位</td>
+                                    <td>0.7MPa/min紧急泄压复位</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>轻油加氢</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td></td>
+                                        <td><a href="#">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkboxes" value="" name="" />
+                                    </td>
+                                    <td><a>16PBR71001.PV</a></td>
+                                    <td>0.7MPa/min紧急泄压复位</td>
+                                    <td>0.7MPa/min紧急泄压复位</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>轻油加氢</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td></td>
+                                        <td><a href="#">编辑</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="checkboxes" value="" name="" />
+                                    </td>
+                                    <td><a>16PBR71001.PV</a></td>
+                                    <td>0.7MPa/min紧急泄压复位</td>
+                                    <td>0.7MPa/min紧急泄压复位</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>轻油加氢</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td></td>
+                                        <td><a href="#">编辑</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row margin-top-0">
+                            <div class="col-md-12" style="text-align: right;">
+                                <ul class="pagination" id="pager_container">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END EXAMPLE TABLE PORTLET-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">编辑参数</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN FORM-->
+                        <form action="javascript:;" class="horizontal-form" id="user_form">
+                            <div class="form-body">
+                                <div class="alert alert-danger display-hide">
+                                    <button class="close" data-close="alert"></button>
+                                    <label id="lbl_Msg"></label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">位号名称</label>
+                                            <input type="text" id="txtUMID" name="UMID" class="form-control" placeholder="位号名称">
+                                            <input id="hide_Id" type="hidden" />
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">位号描述</label>
+                                            <input type="text" id="txtRealName" name="RealName" class="form-control" placeholder="位号描述">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">测量位置/对象</label>
+                                            <input type="text" id="" name="UMID" class="form-control" placeholder="测量位置/对象">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <!--/span-->
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">隶属设备</label>
+                                            <select class="form-control" id="" name="Sex">
+                                                <option value="0"></option>
+                                                <option value="1">隶属设备1</option>
+                                                <option value="2">隶属设备2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">隶属系统</label>
+                                            <select class="form-control" id="" name="Sex">
+                                                <option value="0"></option>
+                                                <option value="1">隶属系统</option>
+                                                <option value="2">隶属系统</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">隶属装置</label>
+                                            <select class="form-control" id="" name="Sex">
+                                                <option value="0"></option>
+                                                <option value="1">隶属装置1</option>
+                                                <option value="2">隶属装置2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">参数专业</label>
+                                            <select class="form-control" id="" name="Sex">
+                                                <option value="0"></option>
+                                                <option value="1">参数专业1</option>
+                                                <option value="2">参数专业2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">参数分类</label>
+                                            <select class="form-control" id="" name="Sex">
+                                                <option value="0"></option>
+                                                <option value="1">参数分类1</option>
+                                                <option value="2">参数分类2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">参数项目</label>
+                                            <select class="form-control" id="" name="Sex">
+                                                <option value="0"></option>
+                                                <option value="1">参数项目1</option>
+                                                <option value="2">参数项目2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">数值类型</label>
+                                            <select class="form-control" id="" name="Sex">
+                                                <option value="0"></option>
+                                                <option value="1">数值类型1</option>
+                                                <option value="2">数值类型2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">管理标识</label>
+                                            <input type="text" id="" name="UMID" class="form-control" placeholder="管理标识">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">工程单位</label>
+                                            <input type="text" id="" name="RealName" class="form-control" placeholder="工程单位">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">卡片指标下限</label>
+                                            <input type="text" id="" name="RealName" class="form-control" placeholder="卡片指标下限">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">卡片指标上限</label>
+                                            <input type="text" id="" name="UMID" class="form-control" placeholder="卡片指标上限">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">报警高高限</label>
+                                            <input type="text" id="" name="UMID" class="form-control" placeholder="报警高高限">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">报警高限</label>
+                                            <input type="text" id="" name="RealName" class="form-control" placeholder="报警高限">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">报警低限</label>
+                                            <input type="text" id="" name="UMID" class="form-control" placeholder="报警低限">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label">报警低低限</label>
+                                            <input type="text" id="" name="RealName" class="form-control" placeholder="报警低低限">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" id="btn_Save" class="btn green">提交</button>
+                                        <button type="reset" id="btn_Clear" class="btn btn-default">清空</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

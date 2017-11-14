@@ -1,0 +1,139 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>优惕云</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css content/css/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css">
+    <link rel="stylesheet" href="bower_components/ionic/css/ionic.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link href="bower_components/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
+    <link href="bower_components/simple-line-icons/simple-line-icons.css" rel="stylesheet" />
+    <link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="bower_components/jqvmap/dist/jqvmap.css" rel="stylesheet" />
+    <link href="bower_components/morris.js/morris.css" rel="stylesheet" />
+    <link href="content/plugins/uniform/css/uniform.default.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="content/css/task.css">
+    <link rel="stylesheet" type="text/css" href="content/css/components-rounded.css">
+    <link rel="stylesheet" type="text/css" href="content/css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="content/css/default.css">
+    <link rel="stylesheet" type="text/css" href="content/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="content/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="content/css/default.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/jstree/dist/themes/default/style.min.css">
+    <!-- endinject -->
+    <!-- <link rel="stylesheet" href="content/css/vendor.css"> -->
+    <!-- endbuild -->
+    <!-- build:css content/css/main.css -->
+    <!-- <link rel="stylesheet" href="content/css/main.css"> -->
+    <!-- endbuild -->
+</head>
+<style type="text/css">
+body {
+    background-color: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei';
+    outline: none;
+}
+</style>
+
+<body ng-app="webfullApp" ng-strict-di>
+    <!--[if lt IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div>
+        <ui-view name="menuContent"></ui-view>
+    </div>
+    <!--   <div class="footer" ng-cloak>
+        <p>This is your footer</p>
+    </div> -->
+    </div>
+    <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>-->
+    <!-- build:js app/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/nvd3/build/nv.d3.js"></script>
+    <script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+    <script src="bower_components/jstree/dist/jstree.min.js"></script>
+    <script src="bower_components/ng-js-tree/dist/ngJsTree.js"></script>
+    <script src="bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
+    <!-- build:js app/app.js  -->
+    <!-- inject:js -->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.constants.js"></script>
+    <script src="app/app.state.js"></script>
+    <script src="app/blocks/handlers/state.handler.js"></script>
+    <script src="app/services/auth/auth.service.js"></script>
+    <script src="app/services/auth/auth.jwt.service.js"></script>
+    <script src="app/services/auth/auth.wechat.service.js"></script>
+    <script src="app/login/login.controller.js"></script>
+    <script src="app/login/login.service.js"></script>
+    <script src="app/services/auth/has-authority.directive.js"></script>
+    <script src="app/services/auth/has-any-authority.directive.js"></script>
+    <script src="app/home/home.controller.js"></script>
+    <script src="app/services/auth/principal.service.js"></script>
+    <script src="app/services/auth/account.service.js"></script>
+    <script src="app/blocks/config/http.config.js"></script>
+    <script src="app/blocks/interceptor/auth.interceptor.js"></script>
+    <script src="app/about/about.controller.js"></script>
+    <script src="app/about/about.state.js"></script>
+    <script src="app/operation/CurrentAlarm/CurrentAlarm.controller.js"></script>
+    <script src="app/operation/CurrentAlarm/CurrentAlarm.service.js"></script>
+    <script src="app/operation/CurrentAlarm/CurrentAlarm.modal.controller.js"></script>
+    <script src="app/operation/HistoryInquiry/HistoryInquiry.controller.js"></script>
+    <script src="app/operation/HistoryInquiry/HistoryInquiry.service.js"></script>
+    <script src="app/operation/HistoryInquiry/HistoryInquiry.modal.controller.js"></script>
+    <script src="app/operation/DeviceData/DeviceData.controller.js"></script>
+    <script src="app/operation/DeviceData/DeviceData.service.js"></script>
+    <script src="app/operation/DeviceData/DeviceData.modal.controller.js"></script>
+    <script src="app/SysSet/User/User.controller.js"></script>
+    <script src="app/SysSet/User/User.service.js"></script>
+    <script src="app/SysSet/User/EditUser.modal.controller.js"></script>
+    <script src="app/SysSet/SetDeviceData/SetDeviceData.controller.js"></script>
+    <script src="app/SysSet/SetDeviceData/SetDeviceData.modal.controller.js"></script>
+    <script src="app/SysSet/SetDeviceData/SetDeviceData.service.js"></script>
+    <script src="app/SysSet/Equipment/Equipment.controller.js"></script>
+    <script src="app/SysSet/Equipment/Equipment.service.js"></script>
+    <script src="app/SysSet/Equipment/EquipmentAdd.modal.controller.js"></script>
+    <script src="app/SysSet/Equipment/EquipmentEdit.modal.controller.js"></script>
+    <script src="app/SysSet/Device/Device.controller.js"></script>
+    <script src="app/SysSet/Device/Device.service.js"></script>
+    <script src="app/SysSet/Device/DeviceAdd.modal.controller.js"></script>
+    <script src="app/login/redirect.controller.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
+</body>
+
+</html>

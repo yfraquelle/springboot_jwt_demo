@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         name="CM1"
+         updateCheck="false"
+         maxBytesLocalHeap="256M">
+	<diskStore path="java.io.tmpdir"/>         
+	<sizeOfPolicy maxDepth="5000" maxDepthExceededBehavior="abort"/>
+    <!--
+      This is a default configuration, it is re-configured by the CacheConfiguration Spring Bean, using the
+      properties from the resources/config/*.yml files.
+    -->
+
+   
+
+    <defaultCache
+            eternal="false"
+            overflowToDisk="false"
+            > </defaultCache>
+            
+
+    <cache name="cn.edu.nju.dzy.domain.User"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="cn.edu.nju.dzy.domain.Authority"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="cn.edu.nju.dzy.domain.User.authorities"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="cn.edu.nju.dzy.domain.PersistentToken"
+           timeToLiveSeconds="3600">
+    </cache>
+    
+    <cache name="com.chemcyber.ichemsoft.domain.PointIndecs"
+           timeToLiveSeconds="8640000">
+    </cache>
+    </ehcache>

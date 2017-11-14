@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thymeleaf.org ">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>欢迎来到优惕云</title>
+<style>
+</style>
+</head>
+<body
+	th:onload="'javascript:redirect(\'' + ${redirecturl} + '\',\'' + ${openid}+ '\',\'' + ${wxName} + '\',\'' + ${jwt} + '\');'">
+	<div class="container">
+		<script>
+    	//Save the id to localstorage
+    	
+    	function redirect(redirecturl,openid,wxName,jwt){
+    		
+    		
+    		
+    		if (redirecturl){
+    			//alert("window.location = "+redirecturl+"\n"+ openid	+"\n"+wxName+"\n"+ jwt);
+    			window.location = redirecturl;
+    		}
+    	}
+    	
+    </script>
+	</div>
+</body>
+</html>

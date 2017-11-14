@@ -1,0 +1,144 @@
+<script type="text/javascript">
+// var zh = "http%3a%2f%2fwww.ut-cloud.net%2findex1.html%23%2flogin";
+// var cs = "http%3a%2f%2fwww.chemcyber.net%2findex1.html%23%2flogin"；
+var obj = new WxLogin({
+    id: "login_container",
+   // appid: "wxc99388afecb8126c",
+    appid:"wx70ee8f148536a523",
+    scope: "snsapi_login",
+    //   redirect_uri: "http%3a%2f%2fwww.ut-cloud.net%2f",
+    redirect_uri:"http%3a%2f%2fwww.chemcyber.net%2findex1.html%23%2flogin",
+    //redirect_uri:"http%3a%2f%2fwww.ut-cloud.net%2findex1.html%23%2flogin",
+ //   redirect_uri: "http%3a%2f%2fwww.baidu.net",
+   // redirect_uri: "http%3a%2f%2fwww.ut-cloud.net%2findex1.html%23%2fcurrentAlarm",
+    state: "123123",
+    style: "",
+    href: ""
+        //href: "https://ut-cloud.net/Content/Styles/wxcode.css"
+});
+$("#myCarousel").carousel();
+</script>
+<style type="text/css">
+body {
+    background-color: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Microsoft YaHei';
+    outline: none;
+}
+
+.separator {
+    float: left;
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    margin-top: 3px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-left: 1px solid #4d4d4d;
+}
+
+.nav > li > a {
+    padding: 0px 3px;
+    color: #666;
+}
+
+.sep {
+    border-bottom: 1px solid #e3e3e3;
+    padding: 10px 0px;
+}
+
+.error {
+    color: #a94442;
+}
+</style>
+<p></p>
+<div class="container">
+    <a href="http://www.ut-cloud.net/">
+        <img src="content/images/logo-default.jpg" class="logo-default" /></a>
+    <ul class="nav navbar-nav pull-right">
+        <li><a href="http://www.chemcyber.com/" target="_blank">科思倍官网</a></li>
+        <li>
+            <span class="separator"></span>
+        </li>
+        <li><a href="http://blog.chemcyber.com/" target="_blank">科思倍博客</a></li>
+        <li>
+            <span class="separator"></span>
+        </li>
+        <li><a href="about.html" target="_blank">关于优惕云</a></li>
+    </ul>
+</div>
+<p class="sep"></p>
+<div class="container">
+    <div class="row" style="padding:15px 0;">
+        <div class="col-md-6" style="text-align: center; vertical-align: central; padding:78px 30px;">
+            <div id="myCarousel" class="carousel image-carousel slide">
+                <div class="carousel-inner">
+                    <div class="active item">
+                        <img src="content/images/1.jpg" class="img-responsive" alt="" />
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="content/images/2.jpg" class="img-responsive" alt="" />
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="content/images/3.jpg" class="img-responsive" alt="" />
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel nav -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                    <i class="m-icon-big-swapleft m-icon-white"></i>
+                </a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                    <i class="m-icon-big-swapright m-icon-white"></i>
+                </a>
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4" style="border: 1px solid #e3e3e3; padding:30px;">
+            <div style="text-align: right;">
+                <img id="img_pc" src="content/images/pc.png" class="img-responsive" style="float: right;" ng-show="vm.wxFlag" ng-click="vm.changeLogin(1)" />
+                <img id="img_wx" src="content/images/wx.png" class="img-responsive" style="float: right;" ng-hide="vm.wxFlag" ng-click="vm.changeLogin(2)" />
+            </div>
+            <div id="login_container" style="clear: right; padding-left: 15px; height: 405px;" ng-show="vm.wxFlag"></div>
+            <div id="login_form" style="height: 406px; clear: right" ng-hide="vm.wxFlag">
+                <!-- BEGIN FORM-->
+                <form class="login-form" ng-submit="vm.login($event)">
+                    <div class="form-body">
+                        <div class="alert alert-danger display-hide" id="hide_msg" style="display: none;">
+                            <button class="close" data-close="alert"></button>
+                            <span id="span_msg"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">登录名:</label>
+                            <input type="text" class="form-control" placeholder="登录名" name="username" id="username" ng-model="vm.username" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">登录密码:</label>
+                            <input type="password" class="form-control" placeholder="登录密码" name="password" id="password" ng-model="vm.password" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary pull-right">登录</button>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+    </div>
+</div>
+<p class="sep"></p>
+<p style="margin-top: 15px; text-align: center;">&copy; {{vm.now|date:'yyyy'}} 南京科思倍信息科技有限公司 版权所有 ICP证：<a href="http://www.miitbeian.gov.cn" title="苏ICP备15056656号-3">苏ICP备15056656号-3</a></p>
