@@ -1,4 +1,4 @@
-package cn.edu.nju.dzy.api.web.webportal.fcc.dto;
+package cn.edu.nju.dzy.api.web.webportal.controller.dto;
 
 /**
  * Created by mdw on 2017/7/15.

@@ -23,7 +23,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllByActivatedIsFalseAndCreatedDateBefore(ZonedDateTime dateTime);
     @Cacheable(cacheNames="User")
     ArrayList<User> findAllByActivatedIsTrueOrderByIdDesc();
-    
+
     List<User> findAllByActivatedIsTrue();
 
     Optional<User> findOneByResetKey(String resetKey);
@@ -33,7 +33,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findOneByLogin(String login);
 
     Optional<User> findOneById(Long userId);
-    
+
     @Query("select u from User u right join u.authorities au where au.name=:name")
     List<User> findAllByAuthority(@Param("name") String name);
 

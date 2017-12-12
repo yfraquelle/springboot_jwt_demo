@@ -37,7 +37,7 @@ QuerydslBinderCustomizer<QUserInfo> {
     UserInfo findOneByUidOrderByUid(String uid);
 
 	Optional<UserInfo> findOneByEmail(String email);
-	
+
 	@Query(value="select nextval( 'user_info_uid_seq')",
 			 nativeQuery = true)
 	Long findOneUidNext();
