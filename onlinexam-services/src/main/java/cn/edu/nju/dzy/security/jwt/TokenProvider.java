@@ -1,5 +1,6 @@
 package cn.edu.nju.dzy.security.jwt;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -57,7 +58,8 @@ public class TokenProvider {
 
         long now = (new Date()).getTime();
         Date validity = new Date(now);
-        if (rememberMe) {
+//        if (rememberMe) {
+        if(true){
             validity = new Date(now + this.tokenValidityInSecondsForRememberMe);
         } else {
             validity = new Date(now + this.tokenValidityInSeconds);
@@ -77,20 +79,28 @@ public class TokenProvider {
             .parseClaimsJws(token)
             .getBody();
 
-
         Collection<? extends GrantedAuthority> authorities =
             Arrays.asList(claims.get(AUTHORITIES_KEY).toString().split(",")).stream()
                 .map(authority -> new SimpleGrantedAuthority(authority))
                 .collect(Collectors.toList());
-        User principal = new User(claims.getSubject(), "",
-            authorities);
-
+        User principal = new User(claims.getSubject(), "", authorities);
+//        String[] info=token.split("_");
+//        String user=info[0];
+//        String role=info[1];
+//        String roles[]=new String[1];
+//        roles[0]=role;
+//        Collection<? extends GrantedAuthority> authorities =
+//            Arrays.asList(roles).stream()
+//                .map(authority -> new SimpleGrantedAuthority(authority))
+//                .collect(Collectors.toList());
+//        log.info(authorities.toString());
+//        User principal = new User(user, "", authorities);
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
 
     public boolean validateToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(authToken);
+//            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
             log.info("Invalid JWT signature: " + e.getMessage());

@@ -154,8 +154,10 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         CorsConfiguration config = jHipsterProperties.getCors();
         if (config.getAllowedOrigins() != null && !config.getAllowedOrigins().isEmpty()) {
             source.registerCorsConfiguration("/api/**", config);
-            source.registerCorsConfiguration("/v2/api-docs", config);
-            source.registerCorsConfiguration("/oauth/**", config);
+            source.registerCorsConfiguration("/auth/**", config);
+            source.registerCorsConfiguration("/exam/**", config);
+            source.registerCorsConfiguration("/student/**", config);
+            source.registerCorsConfiguration("/admin/**", config);
         }
         return new CorsFilter(source);
     }

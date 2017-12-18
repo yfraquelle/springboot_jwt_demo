@@ -85,7 +85,7 @@ public class PiBaseResource extends ResourceController{
 		if (login == null ){
 			return false;
 		} else {
-			return SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN);
+			return SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.admin);
 			
 		}
 	}
@@ -95,7 +95,7 @@ public class PiBaseResource extends ResourceController{
 		if (login == null ){
 			return false;
 		} else {
-			return SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.SYSADMIN);
+			return SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.admin);
 			
 		}
 	}

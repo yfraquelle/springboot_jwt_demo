@@ -2,15 +2,15 @@ package cn.edu.nju.dzy.api.web.webportal.controller;
 
 class Credential
 {
-    public String username;
+    public String studentId;
     public String password;
 
-    public String getUsername() {
-        return username;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public String getPassword() {

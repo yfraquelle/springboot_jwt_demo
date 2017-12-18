@@ -62,8 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Inject
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     	auth
-            .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
+            .userDetailsService(userDetailsService);
+//                .passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -104,10 +104,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           //  .antMatchers("/oauth/api/**").authenticated()
             .antMatchers("/web/api/**").authenticated()
 
-            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/manager/**").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/management/**").hasAuthority("student")
+            .antMatchers("/manager/**").hasAuthority("student")
             .antMatchers("/configuration/ui").permitAll()
-            .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN)
+            .antMatchers("/swagger-ui/index.html").hasAuthority("student")
             .and()
             .apply(securityConfigurerAdapter());
 

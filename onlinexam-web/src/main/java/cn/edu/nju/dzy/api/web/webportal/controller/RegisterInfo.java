@@ -2,17 +2,17 @@ package cn.edu.nju.dzy.api.web.webportal.controller;
 
 class RegisterInfo
 {
-    public String username;
+    public String name;
     public String password;
     public String email;
     public String studentId;
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {

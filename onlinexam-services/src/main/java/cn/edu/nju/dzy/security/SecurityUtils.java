@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Set;
 
 import cn.edu.nju.dzy.domain.Authority;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,7 +19,7 @@ import cn.edu.nju.dzy.domain.User;
  * Utility class for Spring Security.
  */
 public final class SecurityUtils {
-
+    private final static Logger log = LoggerFactory.getLogger(SecurityUtils.class);
     private SecurityUtils() {
     }
 
@@ -51,11 +53,13 @@ public final class SecurityUtils {
         Collection<? extends GrantedAuthority> authorities = securityContext.getAuthentication().getAuthorities();
         if (authorities != null) {
             for (GrantedAuthority authority : authorities) {
+                log.info(authority.toString());
                 if (authority.getAuthority().equals(AuthoritiesConstants.ANONYMOUS)) {
                     return false;
                 }
             }
         }
+        log.info(authorities.toString());
         return true;
     }
 
@@ -73,6 +77,8 @@ public final class SecurityUtils {
         if (authentication != null) {
             if (authentication.getPrincipal() instanceof UserDetails) {
                 UserDetails springSecurityUser = (UserDetails) authentication.getPrincipal();
+                log.info(new SimpleGrantedAuthority(authority).toString());
+                log.info(springSecurityUser.getAuthorities().toString());
                 return springSecurityUser.getAuthorities().contains(new SimpleGrantedAuthority(authority));
             }
         }

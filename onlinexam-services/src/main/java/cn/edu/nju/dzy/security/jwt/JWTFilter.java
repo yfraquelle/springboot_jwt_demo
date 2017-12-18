@@ -49,6 +49,7 @@ public class JWTFilter extends GenericFilterBean {
             }
             filterChain.doFilter(servletRequest, servletResponse);
         } catch (ExpiredJwtException eje) {
+            eje.printStackTrace();
             log.info("Security exception for user {} - {}", eje.getClaims().getSubject(), eje.getMessage());
             ((HttpServletResponse) servletResponse).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
@@ -56,11 +57,12 @@ public class JWTFilter extends GenericFilterBean {
 
     private String resolveToken(HttpServletRequest request){
         String bearerToken = request.getHeader(JWTConfigurer.AUTHORIZATION_HEADER);
-        if(StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")){
-            String jwt = bearerToken.substring(7, bearerToken.length());
-            return jwt;
-        }
-        
-        return null;
+        return bearerToken;
+//        if(StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")){
+//            String jwt = bearerToken.substring(7, bearerToken.length());
+//            return jwt;
+//        }
+//
+//        return null;
     }
 }
