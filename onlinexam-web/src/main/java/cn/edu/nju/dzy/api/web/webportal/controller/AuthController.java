@@ -96,14 +96,16 @@ public class AuthController extends PiBaseResource{
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     @Timed
     @Transactional
-    public String token(@RequestBody Credential credential, HttpServletRequest request, HttpServletResponse response) {
+    public RegisterResponse token(@RequestBody Credential credential, HttpServletRequest request, HttpServletResponse response) {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(credential.getStudentId(), credential.getPassword());
         try {
             Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = tokenProvider.createToken(authentication, true);
-            return jwt;
+            RegisterResponse registerResponse=new RegisterResponse();
+            registerResponse.setData(jwt);
+            return registerResponse;
         } catch (AuthenticationException exception) {
             return null;
         }

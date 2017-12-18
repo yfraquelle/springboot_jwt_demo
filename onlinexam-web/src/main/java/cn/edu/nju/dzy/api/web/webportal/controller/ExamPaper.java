@@ -9,6 +9,7 @@ public class ExamPaper {
     public String startTime;
     public String endTime;
     public int totalScore;
+    public int actualScore;
     public List<Question> examQuestions;
 
     public long getExamId() {
@@ -65,5 +66,13 @@ public class ExamPaper {
 
     public void setExamQuestions(List<Question> examQuestions) {
         this.examQuestions = examQuestions;
+    }
+
+    public int getActualScore() {
+        return actualScore;
+    }
+
+    public void setActualScore(int actualScore) {
+        this.actualScore = actualScore;
     }
 }

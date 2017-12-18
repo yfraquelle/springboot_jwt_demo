@@ -6,7 +6,6 @@ import cn.edu.nju.dzy.repository.UserInfoRepository;
 import cn.edu.nju.dzy.security.AuthoritiesConstants;
 import cn.edu.nju.dzy.security.jwt.TokenProvider;
 import com.codahale.metrics.annotation.Timed;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +29,9 @@ import java.util.List;
  * Created by mdw
  */
 @RestController
-@RequestMapping("/student")
-public class StudentController extends PiBaseResource{
-    private final static Logger log = LoggerFactory.getLogger(StudentController.class);
+@RequestMapping("/admin")
+public class AdminController extends PiBaseResource{
+    private final static Logger log = LoggerFactory.getLogger(AdminController.class);
 
     @Inject
     private TokenProvider tokenProvider;
@@ -47,44 +46,80 @@ public class StudentController extends PiBaseResource{
     @Inject
     JHipsterProperties jhipsterProperteis;
 
-    @RequestMapping(value = "/student/query", method = RequestMethod.GET)
+    @RequestMapping(value = "/allCourses", method = RequestMethod.POST)
     @Timed
     @Transactional
-    @Secured({AuthoritiesConstants.student})
-    public ResponseEntity<?> student_info(HttpServletRequest request, HttpServletResponse response) {
-        Student student=new Student();
-        student.setName("张三");
-        student.setStudentId("141250000");
-        student.setEmail("141250000@smail.nju.edu.cn");
-        return super.getOKResponse(student,"OK");
+    @Secured({AuthoritiesConstants.admin})
+    public void allCourses(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+    @RequestMapping(value = "/levelAndCount", method = RequestMethod.POST)
+    @Timed
+    @Transactional
+    @Secured({AuthoritiesConstants.admin})
+    public void allCourses(@RequestParam String courseName, HttpServletRequest request, HttpServletResponse response) {
+
+    }
+    @RequestMapping(value = "/generateExam", method = RequestMethod.POST)
+    @Timed
+    @Transactional
+    @Secured({AuthoritiesConstants.admin})
+    public void allCourses(@RequestBody GenerateExamInfo generateExamInfo, HttpServletRequest request, HttpServletResponse response) {
+
     }
 
-    @RequestMapping(value = "/allExams", method = RequestMethod.POST)
+    @RequestMapping("/uploadQuestion")
     @Timed
     @Transactional
-    @Secured({AuthoritiesConstants.student})
-    public AllExamsResponse allExams(HttpServletRequest request, HttpServletResponse response) {
-        AllExamsResponse allExamsResponse=new AllExamsResponse();
-        List<Exam> exams=new ArrayList<Exam>();
-        for(int i=1;i<=5;i++)
-        {
-            Exam exam=new Exam();
-            exam.setId(1000+i);
-            exam.setName("考试"+i);
-            exam.setCourse("课程"+i);
-            exam.setStart("2017-10-01 14:00:00");
-            exam.setEnd("2017-10-01 16:00:00");
-            exams.add(exam);
+    @Secured({AuthoritiesConstants.admin})
+    public void uploadFile(@RequestParam(value = "file" , required = true) MultipartFile file) {
+        log.info(file.getName());
+        log.info(file.getSize()+"");
+    }
+
+    @RequestMapping(value = "/downloadTemplate")
+    @Timed
+    @Transactional
+    @Secured({AuthoritiesConstants.admin})
+    public void download(HttpServletRequest request, HttpServletResponse response) {
+        String filePath ="template.csv";
+        File file = new File(filePath);
+        response.setHeader("content-type", "application/octet-stream");
+        response.setContentType("application/octet-stream");
+        response.setHeader("Content-Disposition", "attachment;filename=" + file.getName());
+
+        InputStream in = null;
+        OutputStream out = null;
+
+        try {
+            in = new FileInputStream(file.getPath());
+            int len = 0;
+            byte[] buffer = new byte[1024];
+            out = response.getOutputStream();
+            while((len = in.read(buffer)) > 0) {
+                out.write(buffer,0,len);
+            }
+
+        }catch(Exception e) {
+            throw new RuntimeException(e);
+        }finally {
+            if(in != null) {
+                try {
+                    in.close();
+                }catch(Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
         }
-        allExamsResponse.setExams(exams);
-        return allExamsResponse;
+//        return super.getOKResponse(null,"ok");
     }
 
     @RequestMapping(value = "/examScore", method = RequestMethod.POST)
     @Timed
     @Transactional
-    @Secured({AuthoritiesConstants.student})
-    public ExamPaperResponse examScore(@RequestParam long examId, HttpServletRequest request, HttpServletResponse response) {
+    @Secured({AuthoritiesConstants.admin})
+    public ExamPaperResponse examScore(@RequestParam long examId,@RequestParam long studentId, HttpServletRequest request, HttpServletResponse response) {
         ExamPaperResponse examPaperResponse = new ExamPaperResponse();
         ExamPaper examPaper = new ExamPaper();
         List<Question> questions = new ArrayList<Question>();
@@ -149,5 +184,4 @@ public class StudentController extends PiBaseResource{
         examPaperResponse.setExamPaper(examPaper);
         return examPaperResponse;
     }
-
 }

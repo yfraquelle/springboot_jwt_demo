@@ -58,65 +58,33 @@ public class FccLoginRouterController extends PiBaseResource{
         return super.getOKResponse(student,"OK");
     }
 
-    @RequestMapping(value = "/exam/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/exam/basic/getExamsByStudentId", method = RequestMethod.POST)
     @Timed
     @Transactional
     @Secured({AuthoritiesConstants.student})
-    public ResponseEntity<?> exam_info(HttpServletRequest request, HttpServletResponse response) {
-        List<Exam> exams=new ArrayList<Exam>();
-        for(int i=1;i<=5;i++)
-        {
-            Exam exam=new Exam();
-            exam.setId(1000+i);
-            exam.setName("考试"+i);
-            exam.setCourse("课程"+i);
-            exam.setStart("2017-10-01 14:00:00");
-            exam.setEnd("2017-10-01 16:00:00");
-            exams.add(exam);
+    public ExamListResponse getExamsByStudentId(String studentId,HttpServletRequest request, HttpServletResponse response) {
+        ExamListResponse examListResponse=new ExamListResponse();
+        List<ExamInfo> examInfos=new ArrayList<>();
+        for(int i=0;i<5;i++){
+            ExamInfo examInfo=new ExamInfo();
+            examInfo.setId(i);
+            examInfo.setTestName("期末考试"+i);
+            examInfo.setCourseName("课程"+i);
+            examInfo.setTeacher("教师"+i);
+            examInfo.setTotalScore(100);
+            examInfo.setStartTime("2017-11-12 08:00:00");
+            examInfo.setEndTime("2017-11-12 10:00:00");
+            examInfos.add(examInfo);
         }
 
-        return super.getOKResponse(exams,"OK");
+        examListResponse.setData(examInfos);
+        return examListResponse;
     }
 
-    @RequestMapping(value = "/exam/{examId}/cache", method = RequestMethod.POST)
+    @RequestMapping(value = "/download")
     @Timed
     @Transactional
-    @Secured({AuthoritiesConstants.student})
-    public ResponseEntity<?> exam_cache(@PathVariable long examId,HttpServletRequest request, HttpServletResponse response) {
-
-        return super.getOKResponse(null,"OK");
-    }
-
-    @RequestMapping(value = "/exam/{examId}/submit", method = RequestMethod.POST)
-    @Timed
-    @Transactional
-    @Secured({AuthoritiesConstants.student})
-    public ResponseEntity<?> exam_submit(@PathVariable long examId, @RequestBody List<Question> questions, HttpServletRequest request, HttpServletResponse response) {
-
-        return super.getOKResponse(null,"OK");
-    }
-
-    @RequestMapping(value = "/exam/{examId}/query", method = RequestMethod.POST)
-    @Timed
-    @Transactional
-    @Secured({AuthoritiesConstants.student})
-    public ResponseEntity<?> exam_query(@PathVariable long examId, HttpServletRequest request, HttpServletResponse response) {
-        Exam exam=new Exam();
-        exam.setName("软件过程与管理期末考");
-        exam.setCourse("软件过程与管理");
-        exam.setEasy(7);
-        exam.setHard(8);
-        exam.setStart("2017-11-12 14:00:00");
-        exam.setEnd("2017-11-12 16:00:00");
-        exam.setTime(120);
-        return super.getOKResponse(exam,"OK");
-    }
-
-
-    @RequestMapping(value = "/download", method = RequestMethod.POST)
-    @Timed
-    @Transactional
-    @Secured({AuthoritiesConstants.admin})
+    @Secured({AuthoritiesConstants.admin,AuthoritiesConstants.student})
     public void download(HttpServletRequest request, HttpServletResponse response) {
         String filePath ="template.csv";
         File file = new File(filePath);
